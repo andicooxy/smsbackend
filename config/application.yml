@@ -1,0 +1,17 @@
+production:
+    ADAPTER: "postgresql"
+    DATABASE: smsbackend_prod
+    HOST: '127.0.0.1'
+    PASSWORD: password
+    USERNAME: andycooxy
+test: 
+    root_url: 'http://localhost:3001'
+    DATABASE: smsbackend_test
+development: 
+    ADAPTER: "postgresql"
+    DATABASE: smsbackend_dev
+    HOST: '127.0.0.1'
+    PASSWORD: password
+    USERNAME: andycooxy
+    DB_PORT: 5432
+    

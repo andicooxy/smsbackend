@@ -60,6 +60,9 @@ group :development do
   # gem "spring"
 
 end
+gem 'pg'
+# Add figaro gem for setting environment variables
+gem 'figaro'
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
