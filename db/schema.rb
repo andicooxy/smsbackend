@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_17_180401) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_03_073317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,17 +29,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_17_180401) do
     t.index ["user_id"], name: "index_emails_on_user_id"
   end
 
-  create_table "parents", force: :cascade do |t|
-    t.string "firstname", null: false
+  create_table "family_members", force: :cascade do |t|
     t.string "surname", null: false
     t.string "othername"
-    t.string "occupation", null: false
+    t.string "firstname", null: false
+    t.string "nationality"
+    t.string "recidence_address"
+    t.string "reference", null: false
+    t.integer "occupation_id"
+    t.integer "phone_id"
+    t.integer "email_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["firstname"], name: "index_parents_on_firstname"
-    t.index ["occupation"], name: "index_parents_on_occupation"
-    t.index ["othername"], name: "index_parents_on_othername"
-    t.index ["surname"], name: "index_parents_on_surname"
+    t.index ["email_id"], name: "index_family_members_on_email_id"
+    t.index ["firstname"], name: "index_family_members_on_firstname"
+    t.index ["occupation_id"], name: "index_family_members_on_occupation_id"
+    t.index ["othername"], name: "index_family_members_on_othername"
+    t.index ["phone_id"], name: "index_family_members_on_phone_id"
+    t.index ["reference"], name: "index_family_members_on_reference"
+    t.index ["surname"], name: "index_family_members_on_surname"
   end
 
   create_table "registers", force: :cascade do |t|
@@ -52,6 +60,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_17_180401) do
     t.index ["approved_user_id"], name: "index_registers_on_approved_user_id"
     t.index ["parent_id"], name: "index_registers_on_parent_id"
     t.index ["student_id"], name: "index_registers_on_student_id"
+  end
+
+  create_table "relation_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_relation_types_on_name", unique: true
   end
 
   create_table "students", force: :cascade do |t|
