@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   has_many :family_members, through: :student_family_members
+  belongs_to :level, optional: true 
   def age
     return nil if dob.nil?
 

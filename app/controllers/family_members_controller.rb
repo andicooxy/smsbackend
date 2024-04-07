@@ -36,7 +36,7 @@ class FamilyMembersController < ApplicationController
        reference: DateTime.now.to_i.to_s, 
        recidence_address: params[:recidence_address],
        nationality: params[:nationality]
-      )
+      ) #TODO PHONE email occupation relationship(dropdown) 
 
     if @family_member.save 
       render "family_members/show", status: :created, formats: [:json]

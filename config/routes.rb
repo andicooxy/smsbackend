@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     # resources :states
   end 
 
+  resources :levels do
+    # resources :states
+  end 
+
   resources :family_members do 
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,3 +17,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root  to: "status#index"
 end
+

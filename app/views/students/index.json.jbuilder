@@ -8,11 +8,12 @@ json.students @students do |student|
   json.surname student.surname
   json.othername student.othername
   json.created_on student.created_at
-
-  # json.project do
-  #   json.id student.project.id
-  #   json.name student.project.name
-  # end
+  json.profile_picture student.profile_picture
+  
+  json.level do
+    json.id student&.level&.id
+    json.name student&.level&.name
+  end
 
   # if student.incoming_call_manager
   #   json.incoming_call_manager do
