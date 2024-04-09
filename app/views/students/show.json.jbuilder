@@ -24,7 +24,7 @@ json.students do
       json.othername relative.othername
       json.created_on relative.created_at
       json.occupation relative.occupation
-      json.relation :unknown
+      json.related_as @student.related_as(relative.id)
     end
   else 
     json.relatives []

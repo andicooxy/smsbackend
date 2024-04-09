@@ -23,6 +23,7 @@ json.family_members @family_members do |family_member|
       json.profile_picture student.profile_picture
       json.enrollment_status student.enrollment_status
       json.status student.status
+      json.related_as  student.related_as(family_member.id)
       json.level do
         json.id student&.level&.id
         json.name student&.level&.name

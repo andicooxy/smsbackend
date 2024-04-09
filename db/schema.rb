@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_09_104146) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_111912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,7 +90,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_104146) do
     t.integer "family_member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "relation_type_id"
     t.index ["family_member_id"], name: "index_student_family_members_on_family_member_id"
+    t.index ["relation_type_id"], name: "index_student_family_members_on_relation_type_id"
     t.index ["student_id"], name: "index_student_family_members_on_student_id"
   end
 

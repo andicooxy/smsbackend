@@ -28,6 +28,7 @@ json.family_member do
         json.id student&.level&.id
         json.name student&.level&.name
       end
+      json.related_as  student.related_as(@family_member.id)
     end
   else 
     json.students []
