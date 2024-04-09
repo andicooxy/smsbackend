@@ -9,7 +9,8 @@ json.students @students do |student|
   json.othername student.othername
   json.created_on student.created_at
   json.profile_picture student.profile_picture
-  
+  json.enrollment_status student.enrollment_status
+  json.status student.status
   json.level do
     json.id student&.level&.id
     json.name student&.level&.name

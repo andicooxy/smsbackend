@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
       @student.othername = params[:othername] if  params[:othername].present?
       @student.profile_picture = params[:profilePicture] if  params[:profilePicture].present?
       @student.dob = params[:dateOfBirth] if  params[:dateOfBirth].present?
-      @student.surname = params[:surname] if  params[:surname].present?
+      @student.firstname = params[:firstname] if  params[:firstname].present?
      
      if params[:levelId].present? 
        @student.level_id = params[:levelId]

@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_07_180810) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_104146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "emails", force: :cascade do |t|
     t.string "str_value", null: false
-    t.integer "parent_id"
     t.boolean "active", default: false
     t.boolean "archived", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "family_member_id"
     t.index ["active"], name: "index_emails_on_active"
     t.index ["archived"], name: "index_emails_on_archived"
-    t.index ["parent_id"], name: "index_emails_on_parent_id"
+    t.index ["family_member_id"], name: "index_emails_on_family_member_id"
     t.index ["str_value"], name: "index_emails_on_str_value"
     t.index ["user_id"], name: "index_emails_on_user_id"
   end
@@ -55,6 +55,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_180810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_levels_on_name", unique: true
+  end
+
+  create_table "occupations", force: :cascade do |t|
+    t.boolean "archived", default: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["archived"], name: "index_occupations_on_archived"
+    t.index ["name"], name: "index_occupations_on_name"
   end
 
   create_table "registers", force: :cascade do |t|
@@ -94,9 +103,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_180810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "level_id"
+    t.integer "enrollment_status", default: 0
+    t.integer "status", default: 0
+    t.index ["enrollment_status"], name: "index_students_on_enrollment_status"
     t.index ["firstname"], name: "index_students_on_firstname"
     t.index ["level_id"], name: "index_students_on_level_id"
     t.index ["othername"], name: "index_students_on_othername"
+    t.index ["status"], name: "index_students_on_status"
     t.index ["surname"], name: "index_students_on_surname"
   end
 
@@ -108,8 +121,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_180810) do
     t.boolean "archived", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "family_member_id"
     t.index ["active"], name: "index_telephones_on_active"
     t.index ["archived"], name: "index_telephones_on_archived"
+    t.index ["family_member_id"], name: "index_telephones_on_family_member_id"
     t.index ["parent_id"], name: "index_telephones_on_parent_id"
     t.index ["str_value"], name: "index_telephones_on_str_value"
     t.index ["user_id"], name: "index_telephones_on_user_id"

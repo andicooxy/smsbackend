@@ -1,6 +1,11 @@
 class Student < ApplicationRecord
+  has_many :student_family_members
   has_many :family_members, through: :student_family_members
+  
   belongs_to :level, optional: true 
+  enum enrollment_status: %i[prospective onborded expelled]
+  enum status: %i[not_set available_in_school not_in_school]
+
   def age
     return nil if dob.nil?
 

@@ -7,3 +7,20 @@
   # ["Grade 1", "Grade 2", "Grade 3", "Grade 4"].each do |genre_name|
   #   Level.find_or_create_by!(name: genre_name)
   # end
+
+  # ["Father",
+  #   "Mother", 
+  #   "Gardian", 
+  #   "Brother", 
+  #   "Sister", 
+  #   "Uncle", 
+  #   "Auntie", 
+  #   "Grand-Father", 
+  #   "Grand-Mother",
+  #   "Step Father",
+  #   "Step Mother",
+  #   "Cousin",
+  #   "Other"
+  # ].each do |genre_name|
+  #   RelationType.find_or_create_by!(name: genre_name)
+  # end
