@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end 
 
   resources :family_members do 
+    put :unassign
   end
 
   resources :relation_types, only: [:index]

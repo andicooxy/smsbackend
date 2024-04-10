@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   before_action :find_student, only: [:show, :update]
   def index 
-    @students = Student.order('created_at')
+    @students = Student.order('created_at desc')
     render "students/index", formats: [:json]
   end
 

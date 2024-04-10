@@ -1,5 +1,6 @@
 class FamilyMembersController < ApplicationController
-  before_action :find_family_member, only: [:show, :update]
+  before_action :find_family_member, only: [:show, :update, :unassign]
+  before_action :find_student, only: [:unassign]
 
   # GET /family_members
   def index
@@ -21,7 +22,6 @@ class FamilyMembersController < ApplicationController
   end
   
   def show 
-    @family_member = FamilyMember.find_by(id: params[:id])
     if @family_member.present? 
       render "family_members/show", status: :ok, formats: [:json]
     else
@@ -47,7 +47,6 @@ class FamilyMembersController < ApplicationController
     end
   end
 
-
   def update 
     @family_member.recidence_address =  params[:recidenceAddress] if params[:recidenceAddress].present?
     @family_member.othername =  params[:othername] if params[:othername].present?
@@ -64,9 +63,40 @@ class FamilyMembersController < ApplicationController
     end
   end
 
+  def unassign
+    begin
+      unless @student
+        return render json: {
+          error: "not_found",
+          error_message: "Student not found",
+          status: 404
+        }
+      end
+  
+      if @family_member == nil
+        return render json: {
+          error: "not_found",
+          error_message: "Family member not found",
+          status: 404
+        }
+      end
+
+      @family_member&.students&.delete(@student)
+      @family_member&.save
+  
+      render "family_members/show", status: :created, formats: [:json]
+    rescue StandardError => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    end
+  end
+  
   private 
+  def find_student 
+    @student = @family_member&.students&.find_by(id: params[:student_id].to_i)
+  end
+
   def find_family_member 
-    @family_member = FamilyMember.find_by(id: params[:id])
+    @family_member = FamilyMember.find_by(id: params[:id].to_i)
   end
 
   def add_other_details 
