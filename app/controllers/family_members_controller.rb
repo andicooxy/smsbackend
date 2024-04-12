@@ -4,7 +4,7 @@ class FamilyMembersController < ApplicationController
 
   # GET /family_members
   def index
-    @query = FamilyMember
+    @query = FamilyMember.unarchived
     # @query = @query.search params[:search] if params[:search]
     # @query = @query.includes(:project, :incoming_call_manager)
     if (params[:column_name] && params[:sort]).present?
@@ -15,7 +15,7 @@ class FamilyMembersController < ApplicationController
           .reorder("#{params[:column_name]} #{params[:sort]}")
     else
       @family_members =
-        @query.limit(params[:limit]).offset(params[:offset]).reorder(id: :asc)
+        @query.limit(params[:limit]).offset(params[:offset]).reorder(created_at: :asc)
     end
 
     render "family_members/index", formats: [:json]

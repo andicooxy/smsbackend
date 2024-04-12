@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :student_statuses, only: [:index]
+    # resources :states
+  # end 
+
+  put '/students/unassign/:id', to: 'students#unassign'
   resources :students do
+    # put :unassign
     # resources :states
   end 
 

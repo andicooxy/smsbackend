@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_09_111912) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_231402) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_111912) do
     t.integer "email_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "archived", default: false
+    t.index ["archived"], name: "index_family_members_on_archived"
     t.index ["email_id"], name: "index_family_members_on_email_id"
     t.index ["firstname"], name: "index_family_members_on_firstname"
     t.index ["occupation_id"], name: "index_family_members_on_occupation_id"
@@ -107,6 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_111912) do
     t.integer "level_id"
     t.integer "enrollment_status", default: 0
     t.integer "status", default: 0
+    t.boolean "archived", default: false
+    t.index ["archived"], name: "index_students_on_archived"
     t.index ["enrollment_status"], name: "index_students_on_enrollment_status"
     t.index ["firstname"], name: "index_students_on_firstname"
     t.index ["level_id"], name: "index_students_on_level_id"

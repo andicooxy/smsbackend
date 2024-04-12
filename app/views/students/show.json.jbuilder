@@ -24,7 +24,12 @@ json.students do
       json.othername relative.othername
       json.created_on relative.created_at
       json.occupation relative.occupation
+      json.telephones relative.telephones
+      json.emails relative.emails
       json.related_as @student.related_as(relative.id)
+      json.reference relative.reference
+      json.recidence_address relative.recidence_address
+      json.nationality relative.nationality
     end
   else 
     json.relatives []
