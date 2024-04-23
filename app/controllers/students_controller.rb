@@ -1,7 +1,8 @@
 class StudentsController < ApplicationController
   before_action :find_student, only: [:show, :destroy, :update, :unassign]
   before_action :find_family_member, only: [:unassign]
-
+  before_action :authorized
+  
   def index 
     @students = Student.unarchived.order('created_at desc')
     render "students/index", formats: [:json]

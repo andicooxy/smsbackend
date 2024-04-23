@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+ # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :student_statuses, only: [:index]
     # resources :states
   # end 
 
   put '/students/unassign/:id', to: 'students#unassign'
+  post '/portal/login', to: 'authentications#login'
+  get '/portal/login/details', to: 'authentications#details'
+
   resources :students do
     # put :unassign
     # resources :states

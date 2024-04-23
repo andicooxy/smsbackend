@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_231402) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_23_175949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,11 +136,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_231402) do
     t.index ["user_id"], name: "index_telephones_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "password_digest"
-    t.integer "user_type_id", null: false
+  create_table "user_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "user_type_id", null: false
+    t.boolean "archived", default: false
+    t.string "password_digest"
+    t.string "firstname"
+    t.string "username"
+    t.string "lastname"
+    t.string "othername"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active", default: false
+    t.string "token_id"
+    t.index ["active"], name: "index_users_on_active"
+    t.index ["archived"], name: "index_users_on_archived"
+    t.index ["token_id"], name: "index_users_on_token_id"
     t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
